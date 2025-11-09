@@ -1,0 +1,24 @@
+# === PyCharm ===
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# === Виртуальные окружения ===
+venv/
+env/
+.venv/
+ENV/
+
+# === Локальные настройки ===
+.env
+*.log
