@@ -1,7 +1,36 @@
-.idea/
+# V language
+v/
+!.vmod
 *.exe
 *.obj
 *.pdb
 *.ilk
 *.pch
-v/
+*.o
+*.so
+*.dylib
+*.dll
+
+# CLion / IntelliJ IDEA
+.idea/
+cmake-build-*/
+*.iml
+*.iws
+out/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# Если у тебя ещё какие-то бинарники/выходные файлы
+/bin/
+/build/
+/dist/
