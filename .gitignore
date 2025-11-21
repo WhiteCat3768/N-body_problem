@@ -18,6 +18,9 @@ cmake-build-*/
 *.iws
 out/
 
+#.gitignore
+.gitignore
+
 # Windows
 Thumbs.db
 Desktop.ini
