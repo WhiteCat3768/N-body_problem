@@ -1,15 +1,14 @@
-from n_body import *
+G = 6.674e-11
 
-
-def Acceleration_diff(self):
+def Acceleration_diff(self, bodies):
 
     acceleration_x = 0
     acceleration_y = 0
     acceleration_z = 0
 
-    for body_2 in Body.bodies:
+    for body_2 in bodies:
         if self.name != body_2.name:
-            acceleration = (Body.G * body_2.mass) / (((self.x - body_2.x) ** 2 + (self.y - body_2.y) ** 2 + self.z - body_2.z) ** 2) ** 1.5)
+            acceleration = (G * body_2.mass) / (((self.x - body_2.x) ** 2 + (self.y - body_2.y) ** 2 + self.z - body_2.z) ** 2) ** 1.5)
             acceleration_x += acceleration * (body_2.x - self.x)
             acceleration_y += acceleration * (body_2.y - self.y)
             acceleration_z += acceleration * (body_2.z - self.z)

@@ -8,6 +8,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from data.solar_system_data import *
 from data.initial_conditions import *
 
+#  from physics import *
+
 class Body:
     G = 6.674e-11
     bodies = []
@@ -28,15 +30,35 @@ class Body:
         self.speed_z = speed_z
         self.trail = []
 
+def Register_body(name, trail_color, mass, x, y, z, speed_x, speed_y, speed_z, trail):
 
-# The following part is entirely a placeholder and will be rewritten to support custom names and any amount of objects.
+    pass
+    #  return body
 
-sun = Body(sun_.name, sun_.trail_color, sun_.mass, sun__.x, sun__.y, sun__.z, sun__.speed_x, sun__.speed_y, sun__.speed_z)
-mercury = Body(mercury_.name, mercury_.trail_color, mercury_.mass, mercury__.x, mercury__.y, mercury__.z, mercury__.speed_x, mercury__.speed_y, mercury__.speed_z)
-venus = Body(venus_.name, venus_.trail_color, venus_.mass, venus__.x, venus__.y, venus__.z, venus__.speed_x, venus__.speed_y, venus__.speed_z)
-earth = Body(earth_.name, earth_.trail_color, earth_.mass, earth__.x, earth__.y, earth__.z, earth__.speed_x, earth__.speed_y, earth__.speed_z)
-mars = Body(mars_.name, mars_.trail_color, mars_.mass, mars__.x, mars__.y, mars__.z, mars__.speed_x, mars__.speed_y, mars__.speed_z)
-jupiter = Body(jupiter_.name, jupiter_.trail_color, jupiter_.mass, jupiter__.x, jupiter__.y, jupiter__.z, jupiter__.speed_x, jupiter__.speed_y, jupiter__.speed_z)
-saturn = Body(saturn_.name, saturn_.trail_color, saturn_.mass, saturn__.x, saturn__.y, saturn__.z, saturn__.speed_x, saturn__.speed_y, saturn__.speed_z)
-uranus = Body(uranus_.name, uranus_.trail_color, uranus_.mass, uranus__.x, uranus__.y, uranus__.z, uranus__.speed_x, uranus__.speed_y, uranus__.speed_z)
-neptune = Body(neptune_.name, neptune_.trail_color, neptune_.mass, neptune__.x, neptune__.y, neptune__.z, neptune__.speed_x, neptune__.speed_y, neptune__.speed_z)
+#  Choice of objects that are properly registered in both files.
+names_data = {body[0] for body in bodies_data}
+names_condition = {body[0] for body in bodies_conditions}
+names = names_data & names_condition
+
+#  TODO: Replace with usage of selected example file according to config file.
+requested_bodies_names = {'Sun', 'Earth'}
+
+#  Only picking names of objects that are required in config file and are registered in the simulation.
+registered_objects_names = names & requested_bodies_names
+
+#  The main array of the simulation that defines list of names of processed bodies.
+BODIES = []
+
+#  Formation of BODIES list (doesnt get changed later).
+for body_name in registered_objects_names:
+    BODIES.append(Register_body(next((body[0] for body in bodies_data if body[0] == body_name), None),
+                                next((body[1] for body in bodies_data if body[0] == body_name), None),
+                                next((body[2] for body in bodies_data if body[0] == body_name), None),
+                                next((body[1] for body in bodies_conditions if body[0] == body_name), None),
+                                next((body[2] for body in bodies_conditions if body[0] == body_name), None),
+                                next((body[3] for body in bodies_conditions if body[0] == body_name), None),
+                                next((body[4] for body in bodies_conditions if body[0] == body_name), None),
+                                next((body[5] for body in bodies_conditions if body[0] == body_name), None),
+                                next((body[6] for body in bodies_conditions if body[0] == body_name), None),
+                                []
+                                ))
