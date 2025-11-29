@@ -30,10 +30,22 @@ class Body:
         self.speed_z = speed_z
         self.trail = []
 
-def Register_body(name, trail_color, mass, x, y, z, speed_x, speed_y, speed_z, trail):
 
-    pass
-    #  return body
+def Register_body(name):
+
+    name = next((body[0] for body in bodies_data if body[0] == name), None)
+    trail_color = next((body[1] for body in bodies_data if body[0] == name), None)
+    mass = next((body[2] for body in bodies_data if body[0] == name), None)
+    x = next((body[1] for body in bodies_conditions if body[0] == name), None)
+    y = next((body[2] for body in bodies_conditions if body[0] == name), None)
+    z = next((body[3] for body in bodies_conditions if body[0] == name), None)
+    speed_x = next((body[4] for body in bodies_conditions if body[0] == name), None)
+    speed_y = next((body[5] for body in bodies_conditions if body[0] == name), None)
+    speed_z = next((body[6] for body in bodies_conditions if body[0] == name), None)
+    trail = []
+
+    return Body(name, trail_color, mass, x, y, z, speed_x, speed_y, speed_z)
+
 
 #  Choice of objects that are properly registered in both files.
 names_data = {body[0] for body in bodies_data}
@@ -51,14 +63,4 @@ BODIES = []
 
 #  Formation of BODIES list (doesnt get changed later).
 for body_name in registered_objects_names:
-    BODIES.append(Register_body(next((body[0] for body in bodies_data if body[0] == body_name), None),
-                                next((body[1] for body in bodies_data if body[0] == body_name), None),
-                                next((body[2] for body in bodies_data if body[0] == body_name), None),
-                                next((body[1] for body in bodies_conditions if body[0] == body_name), None),
-                                next((body[2] for body in bodies_conditions if body[0] == body_name), None),
-                                next((body[3] for body in bodies_conditions if body[0] == body_name), None),
-                                next((body[4] for body in bodies_conditions if body[0] == body_name), None),
-                                next((body[5] for body in bodies_conditions if body[0] == body_name), None),
-                                next((body[6] for body in bodies_conditions if body[0] == body_name), None),
-                                []
-                                ))
+    BODIES.append(Register_body(body_name))
