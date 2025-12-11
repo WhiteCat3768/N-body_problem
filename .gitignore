@@ -1,24 +1,39 @@
-# === PyCharm ===
+# V language
+v/
+!.vmod
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.pch
+*.o
+*.so
+*.dylib
+*.dll
+
+# CLion / IntelliJ IDEA
 .idea/
+cmake-build-*/
 *.iml
 *.iws
-*.ipr
+out/
 
-# === Python ===
-__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
-dist/
-build/
-*.egg
+#.gitignore
+.gitignore
 
-# === Виртуальные окружения ===
-venv/
-env/
-.venv/
-ENV/
+# Windows
+Thumbs.db
+Desktop.ini
 
-# === Локальные настройки ===
-.env
+# macOS
+.DS_Store
+
+# Логи и временные файлы
 *.log
+*.tmp
+*.temp
+
+# Если у тебя ещё какие-то бинарники/выходные файлы
+/bin/
+/build/
+/dist/
