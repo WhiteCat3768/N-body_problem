@@ -13,6 +13,8 @@ v/
 
 # CLion / IntelliJ IDEA
 .idea/
+.venv
+.gitignore
 cmake-build-*/
 *.iml
 *.iws

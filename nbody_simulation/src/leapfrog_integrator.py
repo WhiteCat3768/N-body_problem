@@ -36,7 +36,7 @@ def leapfrog(bodies, dt):
 
         a_x, a_y, a_z = acceleration_diff(bodies[i], bodies)
 
-        delta_v_x, delta_v_y, delta_v_z = speed_update(a_x, a_y, a_z, dt/2)
+        delta_v_x, delta_v_y, delta_v_z = speed_update(a_x, a_y, a_z, dt)
         bodies[i].v_x += delta_v_x
         bodies[i].v_y += delta_v_y
         bodies[i].v_z += delta_v_z
