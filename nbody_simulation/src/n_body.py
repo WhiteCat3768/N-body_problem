@@ -139,11 +139,57 @@ if Config.method == 'LP':
                 f"Iteration {iteration}, simulated: {t:.0f}s of {Config.time_limit:.0f}s, "
                 f"{(t / Config.time_limit) * 100:.6f}% done.")
 
-print(f"Simulation finished, output file saved in {1}. Vizualizing trails.")
+"""
+Saves simulation output file into results folder.
+"""
+
+# Define the path to the 'results' directory at the same level as PROJECT_ROOT
+RESULTS_DIR = PROJECT_ROOT / "results"
+RESULTS_DIR.mkdir(exist_ok=True)  # Create the directory if it doesn't exist
+
+# Find the smallest unused simulation result number
+n = 1
+while True:
+    filename = f"Simulation_result_{n}.txt"
+    filepath = RESULTS_DIR / filename
+    if not filepath.exists():
+        break
+    n += 1
+
+# Save trajectory data to the selected file
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(f"# Simulation result #{n}\n")
+    f.write(f"# Total simulated time: {t:.3f} s\n")
+    f.write(f"# Time step: {Config.time_step} s\n")
+    f.write(f"# Output frequency: every {Config.frequency} iterations\n")
+    f.write(f"# Integration method: {Config.method}\n")
+    f.write(f"# Dimensions: {Config.dimensions}D\n")
+    f.write("#\n")
+    f.write("# File format:\n")
+    f.write("# Body: <name>\n")
+    f.write("# X Y [Z]\n")
+    f.write("# ...\n")
+    f.write("#\n\n")
+
+    for body in BODIES:
+        f.write(f"Body: {body.name}\n")
+        trail_len = len(x_trails[body.name])
+        for i in range(trail_len):
+            x = x_trails[body.name][i]
+            y = y_trails[body.name][i]
+            if Config.dimensions == 3:
+                z = z_trails[body.name][i]
+                f.write(f"{x:.6e} {y:.6e} {z:.6e}\n")
+            else:
+                f.write(f"{x:.6e} {y:.6e}\n")
+        f.write("\n")  # Blank line between bodies for readability
+
+print(f"Simulation finished, output file saved in {filepath}. Vizualizing trails.")
 
 """
 Visualizes the trails of bodies in 2D or 3D, depending on the config.
 """
+
 fig = plt.figure(figsize=(10, 8))
 
 if Config.dimensions == 3:
@@ -171,7 +217,7 @@ elif Config.dimensions == 2:
     ax.set_ylabel('Y')
 
     ax.set_aspect('equal', adjustable='box')
-    
+
 
 ax.legend()
 plt.title(f'Trail Visualization')

@@ -12,4 +12,4 @@ class Config:
     frequency = 10  # How many iterations pass between each record of bodies` positions (useful to save storage space).
     dimensions = 2  # number of dimensions in the simulation, keep either 2 or 3. If set to 2 simulation will ignore z
     # parameters and simulate a plane.
-    list_of_bodies = "inner_planets_example.py"
+    list_of_bodies = "earth_sun_example.py"
